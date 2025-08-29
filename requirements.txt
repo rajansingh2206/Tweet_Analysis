@@ -1,7 +1,10 @@
-selenium
 pandas
-pyarrow
+numpy
 scikit-learn
 matplotlib
+seaborn
+pyarrow
+textblob
 tqdm
-numpy
+concurrent-log-handler
+selenium

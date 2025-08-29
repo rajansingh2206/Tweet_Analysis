@@ -1,125 +1,97 @@
-# Indian Stock Market Tweet Intelligence System
+# Tweet Analysis
 
 ## Overview
-
-This project collects, processes, deduplicates, and analyzes real-time tweets about the Indian stock market, focusing on hashtags like **#nifty50**, **#sensex**, **#intraday**, and **#banknifty**. It handles large volumes efficiently, extracting trading signals from tweet content for algorithmic research.
-
----
+This project analyzes tweets related to financial markets (e.g., #nifty50, #sensex) to extract actionable quantitative signals for algorithmic trading. It involves scraping Twitter/X, converting text data into features, aggregating signals, and visualizing results, with a focus on memory efficiency and scalability.
 
 ## Features
+- **Twitter Scraping:** Collects tweets for specified hashtags.
+- **Text-to-Signal Conversion:** Extracts TF-IDF features and sentiment.
+- **Memory-Efficient Analysis:** Uses sampling and chunking for large datasets.
+- **Signal Aggregation:** Combines features into composite trading signals.
+- **Visualization:** Generates informative plots for exploration and reporting.
+- **Performance Optimized:** Supports concurrent processing and scalable data handling.
 
-- **Web scraping** of Twitter/X (no paid API required)
-- **Handles anti-bot and rate limiting** (random delays, headless browser, error recovery)
-- **Extracts:** username, timestamp, text, engagement (likes/retweets/replies), mentions, hashtags
-- **Deduplication and Unicode handling** for Indian languages
-- **Data storage** in Parquet format (efficient for big data)
-- **Text-to-signal conversion:** TF-IDF, feature engineering
-- **Memory-efficient visualization** (sampling for big data)
-- **Scalable, modular, and production-ready codebase**
-- **Logging and error handling**
-- **Sample output and plots included**
+## Repository Structure
 
----
-
-## Project Structure
-
-```
-indian-market-tweet-intel/
+```plaintext
+.
 ├── README.md
 ├── requirements.txt
+├── .gitignore
 ├── src/
-│   ├── scraper.py
+│   ├── scraping.py
 │   ├── analyze.py
-│   ├── utils.py
-│   └── config.py
+│   └── utils.py
 ├── data/
 │   └── tweets.parquet
 ├── analysis/
-│   ├── plots/
-│   │   └── engagement_hist.png
-│   └── signals.csv
-├── logs/
-│   └── scraper.log
+│   ├── signals.csv
+│   ├── composite_signal_stats.txt
+│   └── plots/
+│       ├── engagement_distribution.png
+│       ├── sentiment_distribution.png
+│       └── ...
+├── docs/
+│   └── technical_overview.md
 ```
-
----
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+### Requirements
+- Python 3.10 or higher
+- Chrome browser (for scraping)
+- See `requirements.txt` for Python packages
 
-```bash
-git clone <your-repo-url>
-cd indian-market-tweet-intel
-```
+### Installation
 
-### 2. Create Python Environment
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/rajansingh2206/Tweet_Analysis.git
+    cd Tweet_Analysis
+    ```
 
-```bash
-python -m venv venv
-source venv/bin/activate      # On Windows: venv\Scripts\activate
-```
+2. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### 3. Install Dependencies
+3. (Optional) Set up a virtual environment:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    ```
 
-```bash
-pip install -r requirements.txt
-```
+### Usage
 
-### 4. Download ChromeDriver
+1. **Scrape Tweets**  
+   Edit hashtags or scraping settings in `src/scraping.py` as needed, then run:
+    ```bash
+    python src/scraping.py
+    ```
+   This saves tweets to `data/tweets.parquet`.
 
-- Download the [ChromeDriver](https://chromedriver.chromium.org/downloads) **matching your Chrome version**.
-- Place the executable in your PATH or the project root.
+2. **Analyze & Extract Signals**
+    ```bash
+    python src/analyze.py
+    ```
+   Signals and plots are saved to `analysis/`.
 
----
+### Output
 
-## Usage
+- **Raw tweets:** `data/tweets.parquet`
+- **Signals/features:** `analysis/signals.csv`
+- **Plots:** `analysis/plots/`
+- **Composite signal stats:** `analysis/composite_signal_stats.txt`
 
-### 1. Scrape Tweets
+## Sample Results
 
-```bash
-python src/scraper.py
-```
-- Scrapes recent tweets for all target hashtags (~2000+ tweets total).
-- Deduplicates, cleans, and saves to `data/tweets.parquet`.
-- Logs activity in `logs/scraper.log`.
+- See `analysis/plots/` for sample engagement and sentiment distributions.
+- See `analysis/signals.csv` for extracted features.
 
-### 2. Analyze and Visualize
+## Contributing
 
-```bash
-python src/analyze.py
-```
-- Loads `data/tweets.parquet`, processes text to signals (TF-IDF), and aggregates features.
-- Outputs:
-  - `analysis/signals.csv` (numeric features and confidence)
-  - `analysis/plots/engagement_hist.png`
-
----
-
-## Example Outputs
-
-- **`data/tweets.parquet`**: Cleaned, deduplicated tweet dataset
-- **`analysis/signals.csv`**: Quantitative trading signals
-- **`analysis/plots/engagement_hist.png`**: Sample engagement plot
-
----
-
-## Notes
-
-- **No Twitter login is required** for public content. If you face a login wall, see README tips for Selenium login automation.
-- Modular code: adjust hashtags or add feature engineering as needed.
-- Handles Unicode and Indian languages in tweets.
-- Production-level error handling and logging.
-
----
-
-## Troubleshooting
-
-- **If scraping fails** ("no tweets found" or errors): ensure ChromeDriver is installed, up to date, and matches Chrome version.
-- **If Twitter requests login**: see Selenium login tips online or ask for a code snippet to handle login via Selenium.
-
----
+Contributions are welcome! Please open issues or submit pull requests.
 
 ## License
 
-MIT License.
+MIT License

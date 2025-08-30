@@ -88,6 +88,8 @@ This project analyzes tweets related to financial markets (e.g., #nifty50, #sens
 - See `analysis/plots/` for sample engagement and sentiment distributions.
 - See `analysis/signals.csv` for extracted features.
 
+> **Note:** The number of tweets collected depends on Twitter’s live hashtag activity and scraping constraints. If fewer tweets are available for a hashtag in a given 24-hour window, the script will collect as many as possible. This is a real-world limitation of public data sources.
+
 ## Contributing
 
 Contributions are welcome! Please open issues or submit pull requests.

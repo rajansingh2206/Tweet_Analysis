@@ -40,4 +40,4 @@
 
 ## Contact
 
-For questions, contact [Your Name] or open an issue on GitHub.
+For questions, contact Rajan Singh (work.rajansingh@gmail.com) or open an issue on GitHub.

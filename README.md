@@ -14,14 +14,14 @@ This project analyzes tweets related to financial markets (e.g., #nifty50, #sens
 ## Repository Structure
 
 ```plaintext
-.
+rajansingh2206/Tweet_Analysis
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
-├── src/
-│   ├── scraping.py
-│   ├── analyze.py
-│   └── utils.py
+├── src_scraper.py
+├── src_analyze.py
+├── analysis_and_insights.py
+├── technical_overview.md
 ├── data/
 │   └── tweets.parquet
 ├── analysis/
@@ -31,8 +31,8 @@ This project analyzes tweets related to financial markets (e.g., #nifty50, #sens
 │       ├── engagement_distribution.png
 │       ├── sentiment_distribution.png
 │       └── ...
-├── docs/
-│   └── technical_overview.md
+├── logs/
+│   └── scraper.log
 ```
 
 ## Setup Instructions
